@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <cs50.h>
 
-int main (void)
+int main(void)
 {
     int n = get_int("Height = ");
     while (n < 1 || n > 8)
@@ -10,7 +10,7 @@ int main (void)
     }
     for (int i = 0; i < n; i++)
     {
-        for (int k = 0; k < n-i-1 ; k++)
+        for (int k = 0; k < n - i - 1 ; k++)
         {
             printf(" ");
         }
