@@ -4,7 +4,7 @@
 int main (void)
 {
     int n = get_int("Height = ");
-    if (n >= 0 && n <= 8)
+    if (n >= 1 && n <= 8)
     {
         for (int i = 0; i < n; i++)
         {
