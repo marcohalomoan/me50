@@ -2,7 +2,7 @@
 #include <cs50.h>
 #include <math.h>
 
-int main (void)
+int main(void)
 {
     float c = get_float("Change owed: ");
     while (c < 0)
@@ -31,5 +31,5 @@ int main (void)
         cents -= l;
         n++;
     }
-    printf("%i\n",n);
+    printf("%i\n", n);
 }
