@@ -17,16 +17,16 @@ int main(void)
         n = i + 1 - j;
     }
     j = 0;
-    printf("%i letter(s)",n);
+    printf("%i letter(s)", n);
     for (int i = 0; i <= strlen(text); i++)
     {
-        if (text[i] == 32 && (text[i+1] != 32 || text[i+1] != 0))
+        if (text[i] == 32 && (text[i + 1] != 32 || text[i + 1] != 0))
         {
             j++;
         }
     }
     int w = j + 1;
-    printf("\n%i word(s)",w);
+    printf("\n%i word(s)", w);
     j = 0;
     for (int i = 0; i <= strlen(text); i++)
     {
@@ -36,9 +36,9 @@ int main(void)
         }
     }
     int s = j;
-    printf("\n%i sentence(s)",s);
-    float L = (float) n/w * 100;
-    float S = (float) s/w * 100;
+    printf("\n%i sentence(s)", s);
+    float L = (float) n / w * 100;
+    float S = (float) s / w * 100;
     float index = 0.0588 * L - 0.296 * S - 15.8;
     int result = round(index);
     if (result < 1)
