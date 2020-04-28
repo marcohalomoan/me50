@@ -33,5 +33,5 @@ int main(int n_arg, string key[])
             text[j] += 97;
         }
     }
-    printf("ciphertext: %s\n",text);
+    printf("ciphertext: %s\n", text);
 }
