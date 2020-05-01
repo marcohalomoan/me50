@@ -132,7 +132,7 @@ bool vote(int voter, int rank, string name)
     {
         if (strcmp(candidates[i].name, name) == 0)
         {
-            preferences[voter][rank] = i;
+            preferences[voter][rank] = i; /*Voter choose candidate i for the rank*/
             return true;
         }
     }
@@ -148,8 +148,9 @@ void tabulate(void)
         {
             if (!candidates[preferences[i][j]].eliminated)
             {
-                candidates[preferences[i][j]].votes++;
-                break;
+                candidates[preferences[i][j]].votes++; /*If the jth rank in ith voter preference is not eliminated, 
+                then it is added to the candidate's votes*/
+                break; /*Stop the inner loop after we find what we want*/
             }
         }
     }
@@ -173,13 +174,13 @@ bool print_winner(void)
 // Return the minimum number of votes any remaining candidate has
 int find_min(void)
 {
-    int min = 0;
-    int minvote;
+    int min = 0; /*The index of candidate(s) having the lowest vote*/
+    int minvote; /*The number of lowest vote*/
     for (int k = 0; k < candidate_count; k++)
     {
         while (candidates[min].eliminated)
         {
-            min++;
+            min++; /*We need to set one as minimum and compare with the next one but it should be the one not eliminated*/
         }
         if (!candidates[k].eliminated)
         {
@@ -195,6 +196,7 @@ int find_min(void)
 // Return true if the election is tied between all candidates, false otherwise
 bool is_tie(int min)
 {
+    /*The int min is not required, if every uneliminated votes are equal then it is tie by setting default to equal (true)*/
     for (int k = 0; k < candidate_count - 1; k++)
     {
         if (!candidates[k].eliminated && !candidates[k + 1].eliminated)
