@@ -181,22 +181,19 @@ bool print_winner(void)
 int find_min(void)
 {
     int min = 0;
-    int min2;
+    int minvote;
     for (int k = 0; k < candidate_count; k++)
     {
-        if (candidates[min].eliminated)
+        while (candidates[min].eliminated)
         {
             min++;
         }
-        else
+        if (candidates[min].votes > candidates[k].votes)
         {
-            if (candidates[min].votes > candidates[k].votes)
-            {
-                min2 = candidates[k].votes;
-            }
+            minvote = candidates[k].votes;
         }
     }
-    return min2;
+    return minvote;
 }
 
 // Return true if the election is tied between all candidates, false otherwise
