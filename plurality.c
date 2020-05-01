@@ -92,7 +92,7 @@ void print_winner(void)
     {
         if (candidates[win].votes == candidates[l].votes)
         {
-            printf ("%s\n", candidates[l].name);
+            printf("%s\n", candidates[l].name);
         }
     }
     return;
