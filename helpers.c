@@ -87,69 +87,115 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    float avgb, avgg, avgr;
-    for (int i = 0; i < height; i++)
+
+    int sumBlue;
+
+    int sumGreen;
+
+    int sumRed;
+
+    float counter;
+
+    //create a temporary table of colors to not alter the calculations
+
+    RGBTRIPLE temp[height][width];
+
+
+
+    for (int i = 0; i < width; i++)
+
     {
-        for (int j = 0; j < width; j++)
+
+        for (int j = 0; j < height; j++)
+
         {
-            if (i == 0 && j == 0)
+
+            sumBlue = 0;
+
+            sumGreen = 0;
+
+            sumRed = 0;
+
+            counter = 0.00;
+
+
+
+            // sums values of the pixel and 8 neighboring ones, skips iteration if it goes outside the pic
+
+            for (int k = -1; k < 2; k++)
+
             {
-                avgb = ((float)image[i][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue) / 4;
-                avgg = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen) / 4;
-                avgr = ((float)image[i][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i + 1][j + 1].rgbtRed) / 4;
+
+                if (j + k < 0 || j + k > height - 1)
+
+                {
+
+                    continue;
+
+                }
+
+
+
+                for (int h = -1; h < 2; h++)
+
+                {
+
+                    if (i + h < 0 || i + h > width - 1)
+
+                    {
+
+                        continue;
+
+                    }
+
+
+
+                    sumBlue += image[j + k][i + h].rgbtBlue;
+
+                    sumGreen += image[j + k][i + h].rgbtGreen;
+
+                    sumRed += image[j + k][i + h].rgbtRed;
+
+                    counter++;
+
+                }
+
             }
-            else if (i == 0 && j == width - 1)
-            {
-                avgb = ((float)image[i][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue) / 4;
-                avgg = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen) / 4;
-                avgr = ((float)image[i][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed) / 4;
-            }
-            else if (i == height - 1 && j == 0)
-            {
-                avgb = ((float)image[i][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue) / 4;
-                avgg = ((float)image[i][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen) / 4;
-                avgr = ((float)image[i][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i - 1][j + 1].rgbtRed) / 4;
-            }
-            else if (i == height - 1 && j == width - 1)
-            {
-                avgb = ((float)image[i][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue) / 4;
-                avgg = ((float)image[i][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 4;
-                avgr = ((float)image[i][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i - 1][j - 1].rgbtRed) / 4;
-            }
-            else if (i == 0 && j != 0 && j != width - 1)
-            {
-                avgb = ((float)image[i][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue) / 6;
-                avgg = ((float)image[i][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen) / 6;
-                avgr = ((float)image[i][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i + 1][j + 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed) / 6;
-            }
-            else if (i == height - 1 && j != 0 && j != width - 1)
-            {
-                avgb = ((float)image[i][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue) / 6;
-                avgg = ((float)image[i][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 6;
-                avgr = ((float)image[i][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i - 1][j + 1].rgbtRed + (float)image[i - 1][j - 1].rgbtRed) / 6;
-            }
-            else if (j == 0 && i != 0 && i != height - 1)
-            {
-                avgb = ((float)image[i][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue) / 6;
-                avgg = ((float)image[i][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen) / 6;
-                avgr = ((float)image[i][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j + 1].rgbtRed + (float)image[i + 1][j + 1].rgbtRed) / 6;
-            }
-            else if (j == width - 1 && i != 0 && i != height - 1)
-            {
-                avgb = ((float)image[i][j].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue) / 6;
-                avgg = ((float)image[i][j].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen) / 6;
-                avgr = ((float)image[i][j].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j - 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed) / 6;
-            }
-            else if (j != 0 && j != width - 1 && i != 0 && i != height - 1)
-            {
-                avgb = ((float)image[i][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue) / 9;
-                avgg = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 9;
-                avgr = ((float)image[i][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j + 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed + (float)image[i - 1][j + 1].rgbtRed + (float)image[i - 1][j - 1].rgbtRed) / 9;
-            }
-            image[i][j].rgbtBlue = round(avgb);
-            image[i][j].rgbtGreen = round(avgg);
-            image[i][j].rgbtRed = round(avgr);
+
+
+
+            // averages the sum to make picture look blurrier
+
+            temp[j][i].rgbtBlue = round(sumBlue / counter);
+
+            temp[j][i].rgbtGreen = round(sumGreen / counter);
+
+            temp[j][i].rgbtRed = round(sumRed / counter);
+
         }
+
     }
-    return;
+
+
+
+    //copies values from temporary table
+
+    for (int i = 0; i < width; i++)
+
+    {
+
+        for (int j = 0; j < height; j++)
+
+        {
+
+            image[j][i].rgbtBlue = temp[j][i].rgbtBlue;
+
+            image[j][i].rgbtGreen = temp[j][i].rgbtGreen;
+
+            image[j][i].rgbtRed = temp[j][i].rgbtRed;
+
+        }
+
+    }
+
 }
