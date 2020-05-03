@@ -140,7 +140,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 avgg = ((float)image[i][j].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen) / 6;
                 avgr = ((float)image[i][j].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j - 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed) / 6;
             }
-            else
+            else if (j != 0 && j != width - 1 && i != 0 && i != height - 1)
             {
                 avgb = ((float)image[i][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue) / 9;
                 avgg = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 9;
