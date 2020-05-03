@@ -68,5 +68,69 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    float avgb, avgg, avgr;
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (i == 0 && j == 0)
+            {
+                avgb = ((float)image[i][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue) / 4;
+                avgg = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen) / 4;
+                avgr = ((float)image[i][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i + 1][j + 1].rgbtRed) / 4;
+            }
+            else if (i == 0 && j == width - 1)
+            {
+                avgb = ((float)image[i][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue) / 4;
+                avgg = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen) / 4;
+                avgr = ((float)image[i][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed) / 4;
+            }
+            else if (i == height - 1 && j == 0)
+            {
+                avgb = ((float)image[i][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue) / 4;
+                avgg = ((float)image[i][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen) / 4;
+                avgr = ((float)image[i][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i - 1][j + 1].rgbtRed) / 4;
+            }
+            else if (i == height - 1 && j == width - 1)
+            {
+                avgb = ((float)image[i][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue) / 4;
+                avgg = ((float)image[i][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 4;
+                avgr = ((float)image[i][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i - 1][j - 1].rgbtRed) / 4;
+            }
+            else if (i == 0 && j != 0 && j != width - 1)
+            {
+                avgb = ((float)image[i][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue) / 6;
+                avgg = ((float)image[i][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen) / 6;
+                avgr = ((float)image[i][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i + 1][j + 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed) / 6;
+            }
+            else if (i == height - 1 && j != 0 && j != width - 1)
+            {
+                avgb = ((float)image[i][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue) / 6;
+                avgb = ((float)image[i][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 6;
+                avgr = ((float)image[i][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i - 1][j + 1].rgbtRed + (float)image[i - 1][j - 1].rgbtRed) / 6;
+            }
+            else if (j == 0 && i != 0 && i != height - 1)
+            {
+                avgb = ((float)image[i][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue) / 6;
+                avgg = ((float)image[i][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen) / 6;
+                avgr = ((float)image[i][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j + 1].rgbtRed + (float)image[i + 1][j + 1].rgbtRed) / 6;
+            }
+            else if (j == width - 1 && i != 0 && i != height - 1)
+            {
+                avgb = ((float)image[i][j].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue) / 6;
+                avgg = ((float)image[i][j].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen) / 6;
+                avgr = ((float)image[i][j].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j - 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed) / 6;
+            }
+            else
+            {
+                avgb = ((float)image[i][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue) / 9;
+                avgg = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 9;
+                avgr = ((float)image[i][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j + 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed + (float)image[i - 1][j + 1].rgbtRed + (float)image[i - 1][j - 1].rgbtRed) / 9;
+            }
+            image[i][j].rgbtBlue = round(avgb);
+            image[i][j].rgbtGreen = round(avgg);
+            image[i][j].rgbtRed = round(avgr);
+        }
+    }
     return;
 }
