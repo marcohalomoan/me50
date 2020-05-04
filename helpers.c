@@ -88,6 +88,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     float avgb, avgg, avgr;
+    int tempblue[height][width], tempgreen[height][width], tempred[height][width];
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
@@ -146,9 +147,18 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 avgg = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 9;
                 avgr = ((float)image[i][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j + 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed + (float)image[i - 1][j + 1].rgbtRed + (float)image[i - 1][j - 1].rgbtRed) / 9;
             }
-            image[i][j].rgbtBlue = round(avgb);
-            image[i][j].rgbtGreen = round(avgg);
-            image[i][j].rgbtRed = round(avgr);
+            tempblue[i][j] = round(avgb);
+            tempgreen[i][j] = round(avgg);
+            tempred[i][j] = round(avgr);
+        }
+    }
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            image[i][j].rgbtBlue = tempblue[i][j];
+            image[i][j].rgbtGreen = tempgreen[i][j];
+            image[i][j].rgbtRed = tempred[i][j];
         }
     }
     return;
