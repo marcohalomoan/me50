@@ -20,17 +20,27 @@ int main(int argc, char *argv[])
         return 1;
     }
     FILE *storage = NULL;
+    bool check == false;
     for (int i = 0; fread(temp, nbytes, 1, f) == 1; i++)
     {
-        
         if (temp[0] == 0xff && temp[1] == 0xd8 && temp[2] == 0xff && (temp[3] & 0xf0) == 0xe0)
         {
-            fclose(storage);
+            if (check == true)
+            {
+                fclose(storage);
+            }
+            else
+            {
+                check = true;
+            }
             sprintf(filename, "%03i.jpg", i);
             storage = fopen(filename,"w");
             fwrite(&temp, 512, 1, storage);
         }
-        fwrite(&temp, 512, 1, storage);
+        if (check == true)
+        {
+            fwrite(&temp, 512, 1, storage);
+        }
     }
 
     fclose(f);
