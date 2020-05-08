@@ -25,11 +25,12 @@ int main(int argc, char *argv[])
         
         if (temp[0] == 0xff && temp[1] == 0xd8 && temp[2] == 0xff && (temp[3] & 0xf0) == 0xe0)
         {
+            fclose(storage);
             sprintf(filename, "%03i.jpg", i);
             storage = fopen(filename,"w");
             fwrite(&temp, 512, 1, storage);
-            fclose(storage);
         }
+        fwrite(&temp, 512, 1, storage);
     }
 
     fclose(f);
