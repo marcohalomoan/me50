@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     FILE *storage = NULL;
-    bool check == false;
+    bool check = false;
     for (int i = 0; fread(temp, nbytes, 1, f) == 1; i++)
     {
         if (temp[0] == 0xff && temp[1] == 0xd8 && temp[2] == 0xff && (temp[3] & 0xf0) == 0xe0)
