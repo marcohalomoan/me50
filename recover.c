@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         return 1;
     }
     // create a file to store the recovered JPEGs
-    FILE *storage = NULL;
+    FILE *storage;
     bool check = false;
     for (int i = 0; fread(bytes, nbytes, 1, f) == 1; i++)
     {
