@@ -32,7 +32,7 @@ S = count_sentence / count_word * 100
 result = round(0.0588 * L - 0.296 * S - 15.8)
 
 if result < 1:
-    print("Before grade 1")
+    print("Before Grade 1")
 elif result >= 16:
     print("Grade 16+")
 else:
