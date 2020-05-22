@@ -11,7 +11,7 @@ count = 1
 for i in range(height):
     print(" " * (height - 1), end="")
     print("#" * count, end="")
-    print(" ", end="")
+    print("  ", end="")
     print("#" * count)
     count += 1
     height -= 1
