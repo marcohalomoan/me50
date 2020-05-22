@@ -1,5 +1,6 @@
 from cs50 import get_string
 
+
 def main():
     number = get_string("Number: ")
     add = 0
@@ -25,11 +26,13 @@ def main():
         print("VISA")
     else:
         print("INVALID")
+        
 
 def checkAME(number):
     if int(number[0]) == 3 and (int(number[1]) == 4 or int(number[1]) == 7) and len(number) == 15:
         return True
     return False
+    
 
 def checkMASTER(number):
     if int(number[0]) == 5 and len(number) == 16:
@@ -37,10 +40,12 @@ def checkMASTER(number):
             if int(number[1]) == i:
                 return True
     return False
+    
 
 def checkVISA(number):
     if int(number[0]) == 4 and (len(number) == 13 or len(number) == 16):
         return True
     return False
+    
 
 main()
