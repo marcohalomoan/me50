@@ -20,7 +20,7 @@ node;
 int count_size;
 
 // Number of buckets in hash table
-const unsigned int N = 676*676*676;
+const unsigned int N = 143091*2;
 
 // Hash table
 node *table[N];
