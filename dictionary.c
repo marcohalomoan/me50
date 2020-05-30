@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <strings.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -17,10 +18,10 @@ typedef struct node
 node;
 
 // Keep track of how many words in the dictionary
-int count_size;
+int count_size = 0;
 
 // Number of buckets in hash table
-const unsigned int N = 143091*2;
+const unsigned int N = 150000;
 
 // Hash table
 node *table[N];
@@ -43,22 +44,22 @@ bool check(const char *word)
 
 // Hashes word to a number
 // https://stackoverflow.com/questions/7666509/hash-function-for-string
+// http://www.cse.yorku.ca/~oz/hash.html
 unsigned int hash(const char *word)
 {
     unsigned long hash = 5381;
     int c;
 
-    while (c = *word++)
-    {
+    while ((c = *word++))
         hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
-    }
+
     return hash;
 }
 
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
-    char *word == NULL;
+    char *word = NULL;
     FILE *f = fopen(dictionary, "r");
     if (f == NULL)
     {
