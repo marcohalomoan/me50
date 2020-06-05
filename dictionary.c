@@ -21,7 +21,7 @@ node;
 int count_size = 0;
 
 // Number of buckets in hash table
-const unsigned int N = 150000;
+const unsigned int N = 200000;
 
 // Hash table
 node *table[N];
@@ -43,23 +43,21 @@ bool check(const char *word)
 }
 
 // Hashes word to a number
-// https://stackoverflow.com/questions/7666509/hash-function-for-string
-// http://www.cse.yorku.ca/~oz/hash.html
+// https://cs50.stackexchange.com/questions/37209/pset5-speller-hash-function
 unsigned int hash(const char *word)
 {
-    unsigned long hash = 5381;
-    int c;
-
-    while ((c = *word++))
-        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
-
-    return hash;
+    unsigned int hash_value = 0;
+    for (int i = 0, n = strlen(word); i < n; i++)
+    {
+        hash_value = (hash_value << 2) ^ word[i];
+    }
+    return hash_value % N; // N is size of hashtable
 }
 
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
-    char *word = NULL;
+    char word[LENGTH + 1];
     FILE *f = fopen(dictionary, "r");
     if (f == NULL)
     {
@@ -68,18 +66,19 @@ bool load(const char *dictionary)
     }
     while(fscanf(f, "%s", word) != EOF)
     {
+        int index = hash(word);
         node *n = malloc(sizeof(node));
-        if (n == 0)
+        if (n == NULL)
         {
             unload();
             return false;
         }
         strcpy(n->word, word);
-        int index = hash(word);
         n->next = table[index];
         table[index] = n;
         count_size++;
     }
+    fclose(f);
     return true;
 }
 
