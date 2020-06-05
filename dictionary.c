@@ -31,9 +31,9 @@ bool check(const char *word)
 {
     int index = hash(word);
     node *checker = table[index];
-    while(checker->next != NULL)
+    while(checker != NULL)
     {
-        if(strcasecmp(word, checker->word) == 0)
+        if(strcasecmp(checker->word, word) == 0)
         {
             return true;
         }
@@ -70,6 +70,7 @@ bool load(const char *dictionary)
         node *n = malloc(sizeof(node));
         if (n == NULL)
         {
+            unload();
             return false;
         }
         strcpy(n->word, word);
@@ -94,13 +95,16 @@ bool unload(void)
 {
     for(int i = 0; i < N; i++)
     {
-        node *checker = table[i];
-        node *deleter = table[i];
-        while(checker->next != NULL)
+        if(table[i] != NULL)
         {
-            checker = checker->next;
-            free(deleter);
-            deleter = checker;
+            node *checker = table[i];
+            node *deleter = table[i];
+            while(checker != NULL)
+            {
+                checker = checker->next;
+                free(deleter);
+                deleter = checker;
+            }
         }
     }
     return true;
