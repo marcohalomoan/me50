@@ -32,9 +32,9 @@ bool check(char *word)
     // alter the argument to char to make easy to edit
     int index = hash(word); // the index
     node *checker = table[index]; // the pointer to check
-    while(checker != NULL) // null means reaching the end
+    while (checker != NULL) // null means reaching the end
     {
-        if(strcasecmp(checker->word, word) == 0) // zero means equal
+        if (strcasecmp(checker->word, word) == 0) // zero means equal
         {
             return true;
         }
@@ -77,7 +77,7 @@ bool load(const char *dictionary)
         printf("File can not be opened\n");
         return false;
     }
-    while(fscanf(f, "%s", word) != EOF) // EOF is the end of the file
+    while (fscanf(f, "%s", word) != EOF) // EOF is the end of the file
     {
         int index = hash(word); // which linked list we gonna put
         node *n = malloc(sizeof(node)); // allocate a node for linked list
@@ -105,13 +105,13 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    for(int i = 0; i < N; i++)
+    for (int i = 0; i < N; i++)
     {
-        if(table[i] != NULL) // nothing inside the table
+        if (table[i] != NULL) // nothing inside the table
         {
             node *checker = table[i]; // point to whatever table is pointing at
             node *deleter = table[i];
-            while(checker != NULL) // NULL is the end
+            while (checker != NULL) // NULL is the end
             {
                 checker = checker->next; // continue
                 free(deleter); // free whatever deleter pointing at
