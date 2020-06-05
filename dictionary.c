@@ -21,7 +21,7 @@ node;
 int count_size = 0;
 
 // Number of buckets in hash table
-const unsigned int N = 200000;
+const unsigned int N = 26;
 
 // Hash table
 node *table[N];
@@ -30,11 +30,8 @@ node *table[N];
 bool check(const char *word)
 {
     int index = hash(word);
-    if (table[index] == NULL)
-    {
-        return false;
-    }
-    node *checker = table[index];
+    node *checker = malloc(sizeof(node));
+    checker = table[index];
     while(checker->next != NULL)
     {
         if(strcasecmp(word, checker->word) == 0)
@@ -50,12 +47,19 @@ bool check(const char *word)
 // https://cs50.stackexchange.com/questions/37209/pset5-speller-hash-function
 unsigned int hash(const char *word)
 {
-    unsigned int hash_value = 0;
-    for (int i = 0, n = strlen(word); i < n; i++)
+    int hash = 0;
+    if(isalpha(word[0]))
     {
-        hash_value = (hash_value << 2) ^ word[i];
+        if (isupper(word[0]))
+        {
+            hash = word[0] - 65;
+        }
+        else if (islower(word[0]))
+        {
+            hash = word[0] - 97;
+        }
     }
-    return hash_value % N; // N is size of hashtable
+    return hash;
 }
 
 // Loads dictionary into memory, returning true if successful else false
@@ -79,10 +83,8 @@ bool load(const char *dictionary)
         strcpy(n->word, word);
         n->next = table[index];
         table[index] = n;
-        printf("%s\n",table[index]->word);
         count_size++;
     }
-    free(word);
     fclose(f);
     return true;
 }
@@ -96,10 +98,12 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
+    node *checker = malloc(sizeof(node));
+    node *deleter = malloc(sizeof(node));
     for(int i = 0; i < N; i++)
     {
-        node *checker = table[i];
-        node *deleter = table[i];
+        checker = table[i];
+        deleter = table[i];
         while(checker->next != NULL)
         {
             checker = checker->next;
