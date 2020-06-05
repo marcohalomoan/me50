@@ -30,6 +30,10 @@ node *table[N];
 bool check(const char *word)
 {
     int index = hash(word);
+    if (table[index] == NULL)
+    {
+        return false;
+    }
     node *checker = table[index];
     while(checker->next != NULL)
     {
@@ -67,6 +71,10 @@ bool load(const char *dictionary)
     while(fscanf(f, "%s", word) != EOF)
     {
         int index = hash(word);
+        if (table[index] == NULL)
+        {
+            return false;
+        }
         node *n = malloc(sizeof(node));
         if (n == NULL)
         {
