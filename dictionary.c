@@ -77,7 +77,6 @@ bool load(const char *dictionary)
         n->next = table[index];
         table[index] = n;
         count_size++;
-        free(n);
     }
     fclose(f);
     free(word);
