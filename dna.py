@@ -84,7 +84,7 @@ for i in (range(len(DNA))):
                     k = len(DNA)
             if oldcounts > counts[DNA[i:j]]:
                 counts[DNA[i:j]] = oldcounts
-        else:
+        elif STRlist[x] not in counts:
             counts[STRlist[x]] = 0
 
 f.close()
