@@ -14,19 +14,19 @@ if len(argv) != 3:
     exit(1)
 
 # count the number of rows
-f = open(argv[1],"r")
+f = open(argv[1], "r")
 temp1 = reader(f)
 N = len(list(temp1))
 f.close()
 
 # count the number of columns
-f = open(argv[1],"r")
+f = open(argv[1], "r")
 temp2 = reader(f)
 M = len(next(temp2))
 f.close()
 
 # load the STRs
-f = open(argv[1],"r")
+f = open(argv[1], "r")
 temp3 = reader(f)
 i = 0
 for row in next(temp3):
@@ -37,7 +37,7 @@ f.close()
 
 
 # load csv datas into list
-f = open(argv[1],"r")
+f = open(argv[1], "r")
 
 reader = reader(f)
 
@@ -61,7 +61,7 @@ for j in range(len(name)):
 
 
 # check
-f = open(argv[2],"r")
+f = open(argv[2], "r")
 
 DNA = f.readline().rstrip("\n")
 for i in (range(len(DNA))):
@@ -84,6 +84,8 @@ for i in (range(len(DNA))):
                     k = len(DNA)
             if oldcounts > counts[DNA[i:j]]:
                 counts[DNA[i:j]] = oldcounts
+        else:
+            counts[STRlist[x]] = 0
 
 f.close()
 
