@@ -14,7 +14,7 @@ with open(argv[1],"r") as file:
         names = row["name"].split(" ")
         if len(names) == 2:
             names.append(names[1])
-            names[1] = "NULL"
+            names[1] = "None"
         a = names[0]
         b = names[1]
         c = names[2]
