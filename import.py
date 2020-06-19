@@ -8,7 +8,7 @@ if len(argv) != 2:
 
 db = SQL("sqlite:///students.db")
 
-with open(argv[1],"r") as file:
+with open(argv[1], "r") as file:
     reader = DictReader(file)
     for row in reader:
         names = row["name"].split(" ")
@@ -20,4 +20,4 @@ with open(argv[1],"r") as file:
         c = names[2]
         d = row["house"]
         e = row["birth"]
-        db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES (?, ?, ?, ?, ?)",a,b,c,d,e)
+        db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES (?, ?, ?, ?, ?)", a, b, c, d, e)
