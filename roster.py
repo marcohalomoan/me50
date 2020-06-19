@@ -8,11 +8,11 @@ if len(argv) != 2:
 
 db = SQL("sqlite:///students.db")
 
-namelist = db.execute(f"SELECT * FROM students WHERE house = '{argv[1]}'")
+namelist = db.execute(f"SELECT * FROM students WHERE house = '{argv[1]}' ORDER BY last, first")
 
 for i in range(len(namelist)):
     dictname = namelist[i]
-    if (dictname['middle'] == ""):
+    if (dictname['middle'] == 'NULL'):
         print(f"{dictname['first']} {dictname['last']}, born {dictname['birth']}")
     else:
         print(f"{dictname['first']} {dictname['middle']} {dictname['last']}, born {dictname['birth']}")
