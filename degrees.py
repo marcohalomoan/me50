@@ -94,7 +94,7 @@ def shortest_path(source, target):
 
     state = [None, source]
     start = Node(state=state, parent=None, action=None)
-    frontier = StackFrontier()
+    frontier = QueueFrontier()
     frontier.add(start)
     explored = list()
 
