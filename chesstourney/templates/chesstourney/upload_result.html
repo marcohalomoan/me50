@@ -1,0 +1,20 @@
+{% extends "chesstourney/layout.html" %}
+
+{% block body %}
+
+<h2 class="text-bg-info p-3">Enter Tournament Result</h2>
+    <div hidden class="user-id" id="{{ user.id }}"></div>
+    {% if is_tournament %}
+    <div id="upload-result-view">
+        <label for="tournaments">Which tournament:</label><br>
+        <select name="tournaments" id="tournaments">
+            <option value=""></option>
+            {% for tour in tournaments %}
+            <option value="{{ tour.id }}">{{ tour.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% else %}
+    <div class="text-bg-danger p-3 registered">Sorry no tournament available</div>
+    {% endif %}
+{% endblock %}

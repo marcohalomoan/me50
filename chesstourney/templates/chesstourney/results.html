@@ -1,0 +1,37 @@
+{% extends "chesstourney/layout.html" %}
+
+{% block body %}
+
+{% for result in results.object_list %}
+<div class="card post-card result">
+    <div class="card-body">
+        <a href="{% url 'tour_result' tournament_id=result.tournament_result.id %}"><h5 class="card-title">{{ result.tournament_result.name }}</h5></a>
+        <div id="timestamp">{{ result.tournament_result.date }}</div>
+        <div class="card-text content">{{ result.tournament_result.location }}</div>
+        <div class="card-text content">Winner: {{ result.winner.participant.username }}</div>
+        <!-- {% if user.is_authenticated %}
+          {% if post in liked_posts %}
+              <button id="{{ post.id }}" class="btn btn-danger like-button">Unlike</button>
+          {% elif post not in liked_posts %}
+              <button id="{{ post.id }}" class="btn btn-danger like-button">Like</button>
+          {% endif %}
+        {% endif %} -->
+    </div>
+    <!-- {% if user == post.user %}
+      <div class="button-container">
+        <button id="edit-{{ post.id }}" class="btn btn-secondary edit-button">Edit</button>
+      </div>
+    {% endif %} -->
+</div>
+{% endfor %}
+<nav aria-label="Page navigation">
+<ul class="pagination">
+  {% if tournaments.has_previous %}
+    <li class="page-item"><a class="page-link" href="?page_num={{ tournaments.previous_page_number }}">Previous</a></li>
+  {% elif tournaments.has_next %}
+    <li class="page-item"><a class="page-link" href="?page_num={{ tournaments.next_page_number }}">Next</a></li>
+  {% endif %}
+</ul>
+</nav>
+
+{% endblock %}

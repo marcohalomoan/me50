@@ -1,0 +1,54 @@
+{% extends "chesstourney/layout.html" %}
+
+{% block body %}
+
+<h1 class="text-bg-info p-3"> {{ tournament.name }} </h1>
+
+    {% if tournament.organizer == user %}
+    <form id="close-tournament" action="{% url 'close_tournament' tournament_id=tournament.id %}" method="POST">
+      {% csrf_token %}
+      <div class="form-group">   
+          <button id="close-tourn" class="btn btn-danger" type="submit">Close Registration</button>
+      </div>
+    </form>
+    {% endif %}
+    <br>
+    <img class="tournament-logo" src="{{ tournament.image }}" alt="logo" style="width: 25%; height: 25%;">
+    <div class="text-bg-info p-3 tournament-detail">
+      <h4>Location: <span class="badge bg-dark">{{ tournament.location }}</span></h4>
+      <h4>Date: <span class="badge bg-dark">{{ tournament.date }}</span></h4>
+    </div>
+    <div class="text-bg-dark p-3 organizer"> Organized by: {{ tournament.organizer.username }} </div>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Prizes</h5>
+          <p class="card-text">{{ tournament.prizes }}</p>
+          <h5 class="card-title">Details</h5>
+          <p class="card-text">Number of Rounds: {{ tournament.number_of_rounds }}</p>
+          <p class="card-text">Time Control (in minutes): {{ tournament.time_control }}</p>
+        </div>
+      </div>
+    <div class="card" style="width: 18rem; margin: 20px;">
+      <div class="card-body">
+        <h4> Total Slots: {{ tournament.slots }} </h4>
+        <h4> Slots Left: {{ slots_remaining }} </h4>
+        <h5 class="card-title">Participants so far:</h5>
+        {% for part in participants %}
+        <p class="card-text">{{ part }}</p>
+        {% endfor %}
+      </div>
+    </div>
+    {% if is_logged_in %}
+      {% if is_registered %}
+      <div class="text-bg-warning p-3 registered">You have already registered for this tournament</div>
+      {% elif not is_registered %}
+      <form id="add-participant" action="{% url 'add_participant' tournament_id=tournament.id participant_id=user.id %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">   
+            <button id="apply" class="btn btn-info" type="submit">Apply</button>
+        </div>
+    </form>
+      {% endif %}
+    {% endif %}
+
+{% endblock %}

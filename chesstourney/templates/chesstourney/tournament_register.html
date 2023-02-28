@@ -1,0 +1,36 @@
+{% extends "chesstourney/layout.html" %}
+
+{% block body %}
+<h2 class="text-bg-info p-3">Enter Tournament Details</h2>
+    <div class="tournament-form">
+    <form action="{% url 'add_tournament' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Tournament's Name:</label>
+            <input class="form-control col-sm" id="title" autofocus type="text" name="title" placeholder="Add a Name">
+            <br><br>
+            <label for="image:">Tournament's Logo:</label><br>
+            <input class="form-control" type="url" name="image" id="image" placeholder="Add Tournament Logo">
+            <br><br>
+            <label for="desc">Prizes:</label><br>
+            <textarea class="form-control" id="desc" name="desc" rows="8" cols="100" placeholder="Describe the Prizes"></textarea>
+            <br>
+            <label for="slots">Maximum Players:</label><br>
+            <input class="form-control"  type="number" name="slots" id="slots" placeholder="Number of Players" step="1" min="0" max="500"><br>
+            <label for="date">Tournament's Date:</label><br>
+            <input class="form-control" type="date" name="date" id="date"><br>
+
+            <label for="location">Tournament's Location:</label><br>
+            <input class="form-control"  type="text" name="location" id="location"><br>
+
+            <label for="rounds">Number of Rounds:</label><br>
+            <input class="form-control"  type="number" name="rounds" id="rounds" step="1" min="0" max="30"><br>
+
+            <label for="time-control">Time Control:</label><br>
+            <input class="form-control"  type="number" name="time-control" id="time-control" placeholder="in minutes" step="1" min="0" max="120"><br>
+
+            <br>
+        <input class="btn btn-info" type="submit" value="Add Tournament">
+    </form>
+    </div>
+{% endblock %}

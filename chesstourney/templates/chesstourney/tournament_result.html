@@ -1,0 +1,29 @@
+{% extends "chesstourney/layout.html" %}
+
+{% block body %}
+
+<h1 class="text-bg-info p-3"> {{ result.tournament_result.name }} </h1>
+
+    <br>
+    <img class="tournament-logo" src="{{ result.tournament_result.image }}" alt="logo" style="width: 25%; height: 25%;">
+    <div class="text-bg-info p-3 tournament-detail">
+      <h4>Location: <span class="badge bg-dark">{{ result.tournament_result.location }}</span></h4>
+      <h4>Date: <span class="badge bg-dark">{{ result.tournament_result.date }}</span></h4>
+      <h4> Total Participants: {{ result.tournament_result.participants }} </h4>
+    </div>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Details</h5>
+          <p class="card-text">Winner: {{ result.winner.participant.username }}</p>
+          <p class="card-text">Second: {{ result.second.participant.username }}</p>
+          <p class="card-text">Third: {{ result.third.participant.username }}</p>
+        </div>
+      </div>
+    <button id="tour-details">More tournament details</button>
+    <div class="card details-view" style="display: none; width: 18rem; margin:20px">
+        <div class="card-body">
+          {% for score in scores %}
+          <p class="card-text">{{ score.participant }}: {{ score.total_score }} points</p>
+          {% endfor %}
+    </div>
+{% endblock %}

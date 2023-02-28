@@ -1,0 +1,77 @@
+body {
+    background-image: url('https://media.newyorker.com/photos/61b3c8a84abd4aa3350e4bdf/master/w_2560%2Cc_limit/Thomas-ChessChampionship2021.jpg');
+    background-size: 100%;
+  }
+
+.organizer {
+    margin: 20px;
+    width: 20%;
+}
+
+.registered {
+    margin: 20px;
+    width: 20%;
+}
+
+.result {
+    opacity: 0.75;
+}
+
+.tournament {
+    opacity: 0.75;
+}
+
+.tournament-detail {
+    margin: 20px;
+    width: 20%;
+}
+
+/* .tournament-form {
+    text-align: center;
+} */
+
+.tournament-form label {
+    color:white;
+    background-color: black;
+    padding:10px;
+    margin-left: 20px;
+}
+
+.tournament-form input {
+    width: 50%;
+    margin-left: 20px;
+}
+
+.tournament-form textarea {
+    width: 50%;
+    margin-left: 20px;
+}
+
+.tournament-form input[type=submit] {
+    width:25%;
+    margin: 20px;
+}
+
+.page-item {
+    margin: 20px;
+}
+
+#upload-result-view label {
+    color:white;
+    background-color: black;
+    padding:10px;
+    margin-left: 20px;
+}
+
+#upload-result-view select, input, button {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+#upload-result-view h5 {
+    color:white;
+    background-color: black;
+    padding:10px;
+    margin-left: 20px;
+    width: fit-content;
+}
