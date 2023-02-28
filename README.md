@@ -20,6 +20,6 @@ Chesstourney.js contains all the eventlisteners for various buttons and also val
 
 # Running
 
-py manage.py makemigrations
-py manage.py migrate
-py manage.py runserver
+- py manage.py makemigrations
+- py manage.py migrate
+- py manage.py runserver
