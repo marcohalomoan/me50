@@ -15,4 +15,11 @@ There are login, register, logout pages that are self explanatory. There are 7 o
 - upload_result, enter tournament results for each player (points)
 
 Besides the html, there are django python files, styles.css, and chesstourney.js.
+Models.py contains 4 models for User, Tournaments, participants, and results. Player need to be unique for each tournament. Views.py contains mostly filtering django objects to get the intended list of objects to be displayed in the template. Pagination was also implemented.
 Chesstourney.js contains all the eventlisteners for various buttons and also validate some input, like tournament date can't be in the past. It also have asynchronous requests to some of views.py api to list all the players name when uploading result (could not use normal form since every tournaments have different participants and number of participants)
+
+# Running
+
+py manage.py makemigrations
+py manage.py migrate
+py manage.py runserver
