@@ -25,7 +25,7 @@ This repository contains my problem set submissions for Harvard's CS50 course se
 - **Credit** - Credit card validator using Luhn's algorithm
 - **Speller** - Dictionary implementation with hash tables
 - **Finance** - Stock trading web application with Flask and SQL
-- **Final Project** - [Your project name/description]
+- **Final Project** - [KWOTZ/Android Application to find Motivational Quotes]
 
 **Skills:** C, Python, SQL, Flask, HTML/CSS, JavaScript, Git
 
@@ -76,7 +76,7 @@ This repository contains my problem set submissions for Harvard's CS50 course se
 - **Commerce** - eBay-like auction site
 - **Mail** - Email client single-page application
 - **Network** - Twitter-like social network
-- **Final Project** - [Your project name/description]
+- **Final Project** - [ChessTourney/Web Application for Chess Organizers and Players]
 
 **Skills:** Django, JavaScript, React (or vanilla JS), REST APIs, SQL, HTML/CSS, Git, Testing
 
@@ -86,10 +86,9 @@ This repository contains my problem set submissions for Harvard's CS50 course se
 ```
 me50/
 ├── master (main branch)
-└── cs50/problems/
-    ├── 2020/x/          # CS50x submissions
-    ├── 2021/ai/         # CS50 AI submissions
-    └── 2021/web/        # CS50 Web submissions
+└── cs50/problems/2020/x # CS50x submissions
+└── ai50/problems/2020/x # CS50 AI submissions
+└── web50/problems/2020/x # CS50 Web submissions
 
 Note: Each submission created a separate branch via submit50 tool.
 To view specific submissions, check the branches dropdown above.
