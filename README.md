@@ -151,45 +151,6 @@ To view specific submissions, check the branches dropdown above.
 
 [View certificates →](./certificates/) *(if you have them uploaded)*
 
-## 🚀 From Foundations to Advanced
-
-This three-course journey provided:
-
-**2020 - CS50x:** Core computer science fundamentals  
-↓  
-**2021-2022 - CS50 AI:** Machine learning and AI foundations  
-↓  
-**2021-2022 - CS50 Web:** Full-stack web development  
-↓  
-**2024-Present:** Applying these foundations to **GenAI and Agentic AI Systems**
-
-## 🔗 Current Work
-
-These courses established my foundation in computer science, AI, and web development. I'm now applying these skills to cutting-edge **Generative AI and LangChain-based agentic systems**.
-
-**For my current projects, see:**
-- [AI Research Assistant](link-when-ready) - Multi-agent LangChain system
-- [Predictive Maintenance Agent](link-when-ready) - Production ML pipeline
-- [Portfolio Website](link-when-ready) - Full showcase of current work
-
-## 📝 Reflections
-
-**What made this series valuable:**
-- Progressive complexity building on previous courses
-- Hands-on projects over theoretical lectures
-- Real-world problem-solving approach
-- Emphasis on best practices and code quality
-
-**Evolution in my approach:**
-- **Then (2020-2022):** Building ML models from scratch, traditional web MVC patterns
-- **Now (2024+):** Leveraging LLMs, building autonomous agents, modern AI orchestration
-
-**How I'd approach these projects today:**
-- Integrate LLMs for enhanced functionality
-- Use modern deployment practices (Docker, CI/CD)
-- Implement comprehensive testing
-- Apply agentic patterns where applicable
-- Use type hints and modern Python features
 
 ## 🤝 Academic Integrity
 
@@ -200,11 +161,6 @@ Please complete your own work. These solutions are shared for portfolio purposes
 
 ## 📞 Connect
 
-**Current Focus:** GenAI • LangChain • Agentic AI Systems
-
-[LinkedIn](your-link) • [Portfolio](your-link) • [Email](mailto:your-email)
+[LinkedIn](https://www.linkedin.com/in/mthsh/) • [Email](mailto:marcopasaribu@gmail.com)
 
 ---
-
-*Built with 💻 and ☕ between 2020-2022*  
-*Evolved with 🤖 and 🧠 from 2024 onwards*
